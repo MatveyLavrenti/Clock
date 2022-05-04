@@ -1,0 +1,111 @@
+<style>
+    .clock {
+        
+        
+        width: 200px;
+        height: 200px;
+        position: relative;left: 0;
+        top: 13%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        display: flex;
+        background-color: #212121;
+        border-radius: 50%;
+        padding: 1rem;
+    }
+    .hours,
+    .minutes {
+        position: absolute;
+        bottom: 50.4%;
+        left: 47.7%;
+        width: 4.1%;
+        opacity: 1;
+        -webkit-transform-origin: bottom center 0;
+        -ms-transform-origin: bottom center 0;
+        transform-origin: bottom center 0;
+    }
+    .seconds {
+        position: absolute;
+        bottom: 42.8%;
+        left: 47.2%;
+        z-index: 100;
+        width: 5%;
+        -webkit-transform-origin: 52% 86.5% 0;
+        -ms-transform-origin: 52% 86.5% 0;
+        transform-origin: 52% 86.5% 0;
+    }
+</style>
+
+<div class="clock">
+    <img src="img/watchface.png" alt="watchface" border="0" />
+    <img
+        src="img/seconds.png"
+        alt="watch seconds"
+        class="seconds"
+        border="0"
+        style="transform: rotate(54deg)"
+    />
+    <img
+        src="img/minutes.png"
+        alt="watch minutes"
+        class="minutes"
+        border="0"
+        style="transform: rotate(0deg)"
+    />
+    <img
+        src="img/hours.png"
+        alt="watch hours"
+        class="hours"
+        border="0"
+        style="transform: rotate(390deg)"
+    />
+</div>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+></script>
+<script
+    src="https://momentjs.com/downloads/moment.min.js"
+    integrity="sha512-x/vqovXY/Q4b+rNjgiheBsA/vbWA3IVvsS8lkQSX1gQ4ggSJx38oI2vREZXpTzhAv6tNUaX81E7QBBzkpDQayA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+></script>
+
+<!-- <script type='text/javascript' src='/thirdparty/jquery.moment/2.17.1/moment.min.js'></script> -->
+<script>
+    setInterval(function () {
+        clockTick();
+    }, 1e3);
+
+    function clockTick() {
+        var a = new Date(),
+            b = moment(a),
+            c = b.seconds(),
+            d = b.minutes(),
+            e = b.hours(),
+            f = 6 * c,
+            g = "rotate(" + f + "deg)",
+            h = 6 * d,
+            i = "rotate(" + h + "deg)",
+            j = 30 * e + d / 2,
+            k = "rotate(" + j + "deg)";
+        $(".seconds").css({
+            "-ms-transform": g,
+            "-webkit-transform": g,
+            transform: g,
+        });
+        $(".minutes").css({
+            "-ms-transform": i,
+            "-webkit-transform": i,
+            transform: i,
+        });
+        $(".hours").css({
+            "-ms-transform": k,
+            "-webkit-transform": k,
+            transform: k,
+        });
+    }
+</script>
